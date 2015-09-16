@@ -15,10 +15,11 @@ Jesse White
 - Different problems
 - Bigger problems
 
-^ Background in help desk and traditional systems adminsitration. I heard about
-this DevOps thing and thought that might yield a fatter paycheck. Once I
-digested the words 'cloud' and 'devops' I mostly moved around in different
-industries trying new problems, after which I tried finding bigger problems.
+^ Background in help desk and traditional systems adminsitration.
+
+^ Heard about this DevOps.
+
+^ Once I digested the words 'cloud' and 'devops' I mostly moved around in different industries trying new problems, after which I tried finding bigger problems.
 
 ---
 
@@ -82,16 +83,7 @@ focus area. So, if you are an experienced contributor, think about contributing
 to a Docker repository that has a language or a focus area you are familiar
 with. If you are new, Docker/docker is probably the best place to start.
 
----
-
-## Inline Images
-
-When using the **[inline]** modifier, images automatically centre and fit to the available space.
-
-![inline](http://deckset-assets.s3-website-us-east-1.amazonaws.com/colnago2.jpg)
+^ Keep in mind that not all Docker repos use go, so you may want to consider contributing to a repository that has a language or focus that you are familiar with.
 
 ---
 
-![inline, left](http://deckset-assets.s3-website-us-east-1.amazonaws.com/colnago2.jpg)
-
-Use **[inline, left]** or **[inline, right]** to move images around. With the text underneath like this, it is the simplest ways to add captions to images.

@@ -15,24 +15,31 @@ Jesse White
 - Different problems
 - Bigger problems
 
-^ Background in help desk and traditional systems adminsitration. I heard about
-this DevOps thing and thought that might yield a fatter paycheck. Once I
-digested the words "cloud" and "devops" I mostly moved around in different
-industries trying new problems, after which I tried finding bigger problems.
+^ Background in help desk and traditional systems adminsitration.
+
+^ Heard about DevOps.
+
+^ Digested the words "cloud" and "devops" I mostly moved around in different industries trying new problems, after which I tried finding bigger problems.
 
 ---
 
 # [fit] You?
 
-^ Show of hands for different types of users. Show of hands for different
-levels of users.Any cooks (or other unusual types?)
+^ Show of hands for different types of users. Show of hands for different levels of users.
+
+^ Any cooks (or other unusual types?)
 
 ---
 
 # Where am I?
 
-^ Thank Digital Ocean. Add organizers names here.
-Why are we here today?
+^ Thank you Digital Ocean, Annie.
+
+^ Thanks to Luisa and Dusty
+
+^ Thanks to Carissa and Jacqueline fror Docker Inc.
+
+^So, why are we here today?
 
 ---
 
@@ -52,18 +59,15 @@ overloaded term, so let us marinate for a moment on the definition.
  _verb_
  1. to write computer programs for enjoyment
 
-^ In popular culture hacking is largely talked about in terms of breaking into
-things, but we'll stick with a more traditional sense that hacking is making
-things, not breaking them.
+^ In popular culture hacking is largely talked about in terms of breaking into things, but we'll stick with a more traditional sense that hacking is making things, not breaking them.
 
 ---
 
 # [fit] Hack on Docker
 
-^ We are here today as we shared mutual interests, maybe we have some cool
-ideas for a hackathon project, or maybe you want to get involved with submitted
-code to open source projects. Docker Inc. has an incredible set of tutorials,
-so let us run through some basics to get us all on the same page.
+^ We are here today as we shared mutual interests, maybe we have some cool ideas for a hackathon project, or maybe you want to get involved with submitted code to open source projects.
+
+^ Docker Inc. has an incredible set of tutorials, so let us run through some basics to get us all on the same page.
 
 ---
 
@@ -76,9 +80,7 @@ so let us run through some basics to get us all on the same page.
 # [fit] Docker
 # [fit] check
 
-^ We can make sure that the Docker binary is working as expected. Hopefully
-you havee all installed Docker on your machines as a prerequisite of attending
-this Hackathon, but I can help people after if they haveve had issues.
+^ We can make sure that the Docker binary is working as expected. Hopefully you havee all installed Docker on your machines as a prerequisite of attending this Hackathon, but I can help people after if they haveve had issues.
 
 ---
 
@@ -112,14 +114,13 @@ Storage Driver: aufs
     Docker Root Dir: /mnt/sda1/var/lib/docker
 ```
 
-^ Here, we have ve passed the info command to the docker binary, which returns a
-list of any containers, any images (the building blocks Docker uses to build
-containers), the execution and storage drivers Docker is using, and its basic
-configuration.  Docker has a client-server architecture. It has a single
-binary, docker, that can act as both client and server. As a client, the docker
-binary passes requests to the Docker daemon (e.g., asking it to return in-
-formation about itself), and then processes those requests when they are
-returned.
+^ Here, we have ve passed the info command to the docker binary, which returns a list of any containers, any images (the building blocks Docker uses to build containers), the execution and storage drivers Docker is using, and its basic configuration.
+
+^ Docker has:
+Client-server architecture.
+Single binary, Docker, that can act as both client and server.
+
+^ As a client, the dockerbinary passes requests to the Docker daemon (e.g., asking it to return in- formation about itself), and then processes those requests when they are returned.
 
 ---
 
@@ -134,6 +135,8 @@ returned.
 
 # [fit] Docker run
 
+^ To build our first container, we will need to leverage one of the foundational tools for Docker, docker run.
+
 ---
 
 # Docker run 1/2
@@ -145,9 +148,13 @@ returned.
 
 `$ sudo docker run -i -t ubuntu /bin/bash`
 
-^A lot of things happened here, we can check each piece. First, we told Docker to run a command using docker run.
+^ A lot happens here, so we will break it down. First, we told Docker to run a command using docker run.
 
-^We passed it two command line flags: -i, which keeps STDIN open from the container, and -t, which tells Docker to assign a pseudo-tty to the container.  This line is the base configuration needed to create a container with which we plan to interact on the command line ratherthan run as a daemonized service.
+^ We passed it two command line flags:
+-i, which keeps STDIN open from the container
+-t, which tells Docker to assign a pseudo-tty to the container.
+
+^ This line is the base configuration needed to create a container with which we plan to interact on the command line ratherthan run as a daemonized service.
 
 ^Next, we told Docker to use the image ubuntu to create the container, provided by the Docker Hub Registry. which image to use to create a container, in this case the ubuntu image. You can use other similar base images (fedora, debian, centos, etc) as a basis for building your own images.
 
@@ -175,7 +182,7 @@ Pulling image 27cf784147099545 () from ubuntu root@fcd78e1a3569:/#
 
 ^ So what was happening in the background here? First, Docker checked locally for the ubuntu image. If it can not find the image on our local Docker host, it will reach out to the Docker Hub registry run by Docker, Inc., and look for it there.
 
-^ Once Docker had found the image, it downloaded the image and stored it on the local host.  Docker then used this image to create a new container inside afilesystem. The container has a network, IP address, and a bridge interface to talk to the local host.
+^ Once Docker had found the image, it downloaded the image and stored it on the local host.  Docker then used this image to create a new container inside a filesystem. The container has a network, IP address, and a bridge interface to talk to the local host.
 
 ^ Finally, we told Docker which command to run in our new container, in this case launching a Bash shell with the /bin/bash command.
 
@@ -194,8 +201,9 @@ Pulling image 27cf784147099545 () from ubuntu root@fcd78e1a3569:/#
 
 `root@87dkjha01:/#`
 
-^ When the container had been created, Docker ran the /bin/bash command inside
-it; the containers shell was presented to us here.
+^ What does this get us?
+
+^ When the container was created, Docker ran the '/bin/bash' command, and the presented that prompt to us as seen here.
 
 ---
 
@@ -203,9 +211,9 @@ it; the containers shell was presented to us here.
 # [fit] do we have
 # [fit] here?
 
-^ We are logged into a new container, with a fun ID, as the root user. This is
-a fully fledged Ubuntu host that we can interact with as if it were a bare
-metal server or virtual machine at your preferred cloud provider.
+^ We are logged into a new container, with a fun ID, as the root user.
+
+^ This is a fully fledged Ubuntu host that we can interact with as if it were a bare metal server or virtual machine at your preferred cloud provider.
 
 ---
 
@@ -214,6 +222,8 @@ metal server or virtual machine at your preferred cloud provider.
 ```
 root@87dkjha01:/# hostname
 87dkjha01
+root@87dkjha01:/#
+root@87dkjha01:/#
 root@87dkjha01:/# cat /etc/hosts
 172.17.0.4 f7cbdac22a02
 127.0.0.1 localhost
@@ -223,11 +233,9 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ```
 
-^ We can see that our containers hostname is the container ID. Let us have a
-look at the /etc/hosts file too. Docker has also added a host entry for our
-container with its IP address.
+^ We can see that our containers hostname is the container ID.
 
-^ Let's take a look at the hostname and /etc/hosts file.
+^ Let's have a look at the /etc/hosts file too. Docker has also added a host entry for our container with its IP address.
 
 ---
 
@@ -287,11 +295,11 @@ CONTAINER ID  IMAGE     COMMAND       CREATED        STATUS                     
 67ff9e0bbf98  ubuntu    "/bin/bash"   8 seconds ago  Exited (0) 7 seconds ago           hungry_colden
 ```
 
-^ Once we are finished with our container, we can type exit and return to the
-command prompt of our host. What happened to the container?  Once we exited the
-container, the only process that we had specified stopped, as did the container.
-We can check for the stopped container with "docker ps -a". You can identify
-containers through: short UUID, long UUID, and the name
+^ Once we are finished with our container, we can type exit and return to the command prompt of our host.
+
+^ What happened to the container?  Once we exited the container, the only process that we had specified stopped, as did the container. We can check for the stopped container with "docker ps -a".
+
+^ You can identify containers through: short UUID, long UUID, and the name
 
 ---
 
@@ -301,17 +309,11 @@ containers through: short UUID, long UUID, and the name
 $ sudo docker run --name benji -i -t ubuntu /bin/bash
 root@7e1743f23951:/#
 
-^ Docker will automatically generate a name at random for each container we
-create. We can see that the container we have just created is called gray_cat.
-If we want to specify a particular container name in place of the automatically
-generated name, we can do so using the --name flag.
+^ Docker will automatically generate a name at random for each container we create. If we want to specify a particular container name in place of the automatically generated name, we can do so using the --name flag.
 
-^ We can use the container name in place of the container ID in most Docker
-com- mands, as we'll see.  Container names are useful to help us identify and
-build logical connections between containers and applications. It's also much
-easier to remember a specific container name (e.g., web or db) than a container
-ID or even a random name. I recommend using container names to make managing
-your containers easier. Lastly, names much be unique.
+^ We can use the container name in place of the container ID in most Docker commands, as we'll see.  Container names are useful to help us identify and build logical connections between containers and applications. It's also much easier to remember a specific container name (e.g., web or db) than a container ID or even a random name.
+
+^ It's recommend to use container names to make managing your containers easier. Lastly, names much be unique. Once you start dipping your toes into service discovery, orchestration and scheduling frameworks, you'll forget all about container names and forevermore see container IDs.
 
 ---
 
@@ -331,8 +333,9 @@ docker@boot2docker:~$ sudo docker ps
 CONTAINER ID        IMAGE   COMMAND      CREATED              STATUS              PORTS     NAMES
 7e1743f23951        ubuntu  "/bin/bash"  About a minute ago   Up 6 seconds                  benji
 ```
-^ Run through starting a stopped container
-Now, how do we attach back to the container?
+^ Run through starting a stopped container.
+
+^ How do we attach back to the container?
 
 ---
 
@@ -356,22 +359,16 @@ root@7e1743f23951:/#
 ===============================
 
 ```
-$ sudo docker run --name slimer -d ubuntu /bin/sh -c "while true; do echo hello \
-world; sleep 1; done"
+$ sudo docker run --name slimer -d ubuntu /bin/sh -c "while true; do echo \
+hello world; sleep 1; done"
 4cc473c016b19cf1b587403846625d6f682256d96f0854fb75387e74d717a819
 ```
 
-^ In addition to these interactive containers, we can create longer-running
-containers. Daemonized containers do not have the interactive session we have
-just used and are ideal for running applications and services. Most your
-containers will be daemonized.
+^ In addition to these interactive containers, we can create longer-running containers. Daemonized containers do not have the interactive session we have just used and are ideal for running applications and services. Most your containers will be daemonized.
 
-^ Here, we have used the docker run command with the -d flag to tell Docker to
-detach the container to the background.  We have also specified a while loop as
-our container command. With this combination of flags, you will see that,
-instead of being attached to a shell like our last container, the docker run
-command has instead returned a container ID and returned us to our command
-prompt.
+^ Here, we have used the docker run command with the -d flag to tell Docker to detach the container to the background.
+
+^ We have also specified a while loop as our container command. With this combination of flags, you will see that, instead of being attached to a shell like our last container, the docker run command has instead returned a container ID and returned us to our command prompt.
 
 ---
 
@@ -379,12 +376,11 @@ prompt.
 ===============================
 ===============================
 ===============================
-===============================
 
 ```
 $ sudo docker ps
-CONTAINER ID IMAGE  COMMAND                  CREATED         STATUS         PORTS NAMES
-4cc473c016b1 ubuntu "/bin/sh -c "while tr"   12 seconds ago  Up 11 seconds        slimer
+CONTAINER ID IMAGE  COMMAND                CREATED         STATUS         PORTS NAMES
+4cc473c016b1 ubuntu "/bin/sh -c "while tr" 12 seconds ago  Up 11 seconds        slimer
 ```
 ^ Now if we run docker ps, we can see a running container.
 
@@ -410,10 +406,9 @@ Fetch the logs of a container
   --tail=all                Number of lines to show from the end of the logs
 ```
 
-^ In order to see what is going on inside a running container, there are at
-least 4 ways that I can think of to call the conatiner with the appropriate
-command. Can someone give me the first example of what we could put into the
-"CONTAINER?' field?
+^ In order to see what is going on inside a running container, we can use the 'logs' tool. In order to run that command, we'll need a unique identifier for our container as per the help doc.
+
+^ I can think of least 4 ways that I can call tthe conatiner with the 'docker 'log' command. Can someone give me the first example of what we could put into the 'CONTAINER?' field?
 
 ---
 
@@ -502,3 +497,18 @@ $ sudo docker stop slimer
 $ sudo docker inspect slimer
 $ sudo docker rm slimer
 ```
+
+---
+
+# [fit] There's
+===============
+===============
+===============
+===============
+# [fit] a lot more
+
+^ There is a lot more, but that is all that we have time to reasonably cover today. I'd like to get everyone into groups and there will be plenty of people available to answer questions as they come up.
+
+---
+
+# Questions?
