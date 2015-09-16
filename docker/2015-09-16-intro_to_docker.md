@@ -52,6 +52,10 @@ overloaded term, so let us marinate for a moment on the definition.
  _verb_
  1. to write computer programs for enjoyment
 
+^ In popular culture hacking is largely talked about in terms of breaking into
+things, but we'll stick with a more traditional sense that hacking is making
+things, not breaking them.
+
 ---
 
 # [fit] Hack on Docker
@@ -69,7 +73,8 @@ so let us run through some basics to get us all on the same page.
 
 ---
 
-# [fit] Docker check
+# [fit] Docker
+# [fit] check
 
 ^ We can make sure that the Docker binary is working as expected. Hopefully
 you havee all installed Docker on your machines as a prerequisite of attending
@@ -127,9 +132,31 @@ returned.
 
 ---
 
-# Our first container
+# [fit] Docker run
+
+---
+
+# Docker run 1/2
 ====================
 ====================
+====================
+====================
+====================
+
+`$ sudo docker run -i -t ubuntu /bin/bash`
+
+^A lot of things happened here, we can check each piece. First, we told Docker to run a command using docker run.
+
+^We passed it two command line flags: -i, which keeps STDIN open from the container, and -t, which tells Docker to assign a pseudo-tty to the container.  This line is the base configuration needed to create a container with which we plan to interact on the command line ratherthan run as a daemonized service.
+
+^Next, we told Docker to use the image ubuntu to create the container, provided by the Docker Hub Registry. which image to use to create a container, in this case the ubuntu image. You can use other similar base images (fedora, debian, centos, etc) as a basis for building your own images.
+
+---
+
+
+# Docker run 2/2
+========================
+========================
 
 ```bash
 $ sudo docker run -i -t ubuntu /bin/bash
@@ -145,39 +172,16 @@ b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc↩ (quantal) fr
 Pulling image 27cf784147099545 () from ubuntu root@fcd78e1a3569:/#
 ```
 
-^ a lot of things happened here, we can check each piece.
+
+^ So what was happening in the background here? First, Docker checked locally for the ubuntu image. If it can not find the image on our local Docker host, it will reach out to the Docker Hub registry run by Docker, Inc., and look for it there.
+
+^ Once Docker had found the image, it downloaded the image and stored it on the local host.  Docker then used this image to create a new container inside afilesystem. The container has a network, IP address, and a bridge interface to talk to the local host.
+
+^ Finally, we told Docker which command to run in our new container, in this case launching a Bash shell with the /bin/bash command.
 
 ---
 
-# The docker run command
-========================
-========================
-========================
-========================
-========================
-
-`$ sudo docker run -i -t ubuntu /bin/bash`
-
-^ First, we told Docker to run a command using docker run. We passed it two
-command line flags: -i, which keeps STDIN open from the container, and -t,
-which tells Docker to assign a pseudo-tty to the container.  This line is the
-base configuration needed to create a container with which we plan to interact
-on the command line rather than run as a daemonized service.
-
-^ Next, we told Docker to use the image ubuntu to create the container,
-provided ybt the Docker Hub Registry. which image to use to create a container,
-in this case the ubuntu image. You can use other similar base images (fedora,
-debian, centos, etc) as a basis for building your own images.
-
-^ So what was
-happening in the background here? First, Docker checked locally for the ubuntu
-image. If it can not find the image on our local Docker host, it will reach out
-to the Docker Hub registry run by Docker, Inc., and look for it there. Once
-Docker had found the image, it downloaded the image and stored it on the local
-host.  Docker then used this image to create a new container inside a
-filesystem. The container has a network, IP address, and a bridge interface to
-talk to the local host. Finally, we told Docker which command to run in our new
-container, in this case launching a Bash shell with the /bin/bash command.
+# [fit] The shell
 
 ---
 
@@ -196,8 +200,8 @@ it; the containers shell was presented to us here.
 ---
 
 # [fit] What
-
-# [fit] do we have here?
+# [fit] do we have
+# [fit] here?
 
 ^ We are logged into a new container, with a fun ID, as the root user. This is
 a fully fledged Ubuntu host that we can interact with as if it were a bare
@@ -386,7 +390,11 @@ CONTAINER ID IMAGE  COMMAND                  CREATED         STATUS         PORT
 
 ---
 
-# Peeking inside
+# [fit] Peeking inside
+
+---
+
+# Peeking inside 1/5
 
 ```
 $ sudo docker logs --help
@@ -409,7 +417,7 @@ command. Can someone give me the first example of what we could put into the
 
 ---
 
-# Peeking inside
+# Peeking inside 2/5
 ================
 ================
 ================
@@ -421,7 +429,7 @@ command. Can someone give me the first example of what we could put into the
 
 ---
 
-# Peeking inside
+# Peeking inside 3/5
 ================
 ================
 ================
@@ -435,7 +443,7 @@ $ sudo docker logs <SHORT_UUID>
 
 ---
 
-# Peeking inside
+# Peeking inside 4/5
 ================
 ================
 ================
@@ -449,7 +457,7 @@ $ sudo docker logs <LONG_UUID>
 
 ---
 
-# Peeking inside
+# Peeking inside 5/5
 ================
 ================
 ================
@@ -460,6 +468,11 @@ $ sudo docker logs <SHORT_UUID>
 $ sudo docker logs <LONG_UUID>
 $ sudo docker `sudo docker ps -lq`
 ```
+
+---
+
+# [fit] Other
+# [fit] tools
 
 ---
 
